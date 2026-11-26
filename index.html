@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Zhuhan Jin is an interdisciplinary researcher and PhD candidate at the National University of Singapore, studying how social networks shape individual choices.">
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Zhuhan Jin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: two views. Home is a portrait beside a name, one paragraph and three links. Research is a single column of papers that open on click. */
+:root {
+  --bg: #FFFFFF;
+  --card: #FFFFFF;
+  --ink: #23222B;
+  --muted: #696774;
+  --line: #E4E2EA;
+  --iris: #1F3F66;        /* links, buttons */
+  --iris-soft: #E9EEF4;
+  --on-iris: #FFFFFF;
+  --serif: "Source Serif 4", "Source Serif Pro", Charter, Georgia, "Times New Roman", serif;
+  --sans: Aptos, "Aptos Display", "Albert Sans", "Segoe UI", -apple-system, "Helvetica Neue", Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17161D; --card: #201F28; --ink: #EFEEF4; --muted: #A7A4B5; --line: #34323F;
+    --iris: #A3C0E2; --iris-soft: #22303F; --on-iris: #17161D;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17161D; --card: #201F28; --ink: #EFEEF4; --muted: #A7A4B5; --line: #34323F;
+  --iris: #A3C0E2; --iris-soft: #22303F; --on-iris: #17161D;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--serif); font-size: 1.09rem; line-height: 1.62;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 4rem; -webkit-font-smoothing: antialiased; }
+a { color: var(--iris); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:focus-visible, summary:focus-visible, button:focus-visible { outline: 2px solid var(--iris); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 60rem; margin-inline: auto; }
+
+.nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem 1rem; padding-block: 1.25rem; }
+.nav .me { font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -.01em; }
+.nav .tabs { display: flex; gap: .25rem; }
+.nav .tabs { gap: 1.5rem; }
+.nav .tabs a { text-decoration: none; color: var(--muted); font-size: .95rem; }
+.nav .tabs a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+
+/* home */
+.hello { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 2rem 3.5rem; align-items: center; padding-block: 3rem 2rem; }
+.portrait { margin: 0; min-width: 0; }
+.portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 4.6; object-fit: cover; object-position: 50% 12%; border-radius: 4px; }
+.hello .text { min-width: 0; }
+h1 { font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1.1; letter-spacing: -.02em; font-weight: 600; margin: 0 0 .4rem; text-wrap: balance; }
+.role { color: var(--muted); margin: 0 0 1.5rem !important; }
+.links { list-style: none; margin: 1.5rem 0 0; padding: 0; display: flex; flex-direction: column; gap: .45rem; }
+.links .sel { user-select: all; }
+.hello p { margin: 0 0 1rem; max-width: 34rem; }
+
+
+/* research */
+.r-head { padding-block: 2rem 1rem; max-width: 42rem; }
+.r-head h1 { margin-bottom: 1rem; }
+.r-head p { margin: 0; }
+.col { max-width: 46rem; }
+h2 { font-size: .8rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin: 2.75rem 0 1rem; }
+.papers { display: flex; flex-direction: column; gap: .85rem; }
+details { background: var(--card); border: 1px solid var(--line); border-radius: 4px; }
+details[open] { border-color: var(--iris); }
+summary { list-style: none; cursor: pointer; padding: 1.1rem 1.25rem; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .2rem 1rem; align-items: center; border-radius: 4px; }
+summary::-webkit-details-marker { display: none; }
+summary .t { font-weight: 600; font-size: 1.08rem; line-height: 1.35; letter-spacing: -.01em; }
+summary .w { grid-column: 1; font-size: .93rem; color: var(--muted); }
+summary .w b { color: var(--ink); font-weight: 600; }
+summary .tog { grid-column: 2; grid-row: 1 / span 2; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--iris-soft); color: var(--iris); display: grid; place-items: center; font-size: 1.2rem; line-height: 1; }
+summary .tog::before { content: "+"; }
+details[open] summary .tog::before { content: "\2212"; }
+.more { padding: 0 1.25rem 1.25rem; display: flex; flex-direction: column; gap: .7rem; font-size: .98rem; max-width: 40rem; }
+.more p { margin: 0; }
+.more .abs-l { font-size: .8rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+ul.plain li { display: grid; grid-template-columns: minmax(0, 1fr) 8.5rem; align-items: start; gap: .1rem 1.5rem; padding-block: .7rem; border-top: 1px solid var(--line); }
+ul.plain li:first-child { border-top: 0; padding-top: 0; }
+ul.plain .y { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+ul.plain small { display: block; font-size: .92rem; color: var(--muted); }
+footer { margin-top: 3.5rem; font-size: .85rem; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .hello { grid-template-columns: minmax(0, 1fr); }
+  .hello { padding-top: 1rem; }
+  .portrait { max-width: 15rem; }
+}
+/* Aptos for titles and navigation; the serif carries all running text */
+.nav, h1, h2, summary .t, .more .abs-l, footer { font-family: var(--sans); }
+.role { font-style: italic; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav" aria-label="Pages">
+    <a class="me" href="#home">Zhuhan Jin</a>
+    <span class="tabs">
+      <a href="#home" data-view="home">Home</a>
+      <a href="#research" data-view="research">Research</a>
+    </span>
+  </nav>
+
+  <main id="view-home">
+    <div class="hello">
+      <figure class="portrait"><img src="photo.jpg" alt="Portrait of Zhuhan Jin" width="1100" height="1244"></figure>
+      <div class="text">
+        <h1>Zhuhan Jin</h1>
+        <p class="role">PhD Candidate, National University of Singapore</p>
+        <p>I am an interdisciplinary researcher working at the intersection of Economics, Computer Science, and Transportation Engineering. My research studies how social networks shape individual choices, with applications to joint travel decisions and electric vehicle adoption. I am a PhD candidate at the National University of Singapore, supervised by Prateek Bansal, and a doctoral researcher at the Singapore-ETH Centre. I hold an MPhil in Economics from the University of Oxford.</p>
+        <ul class="links">
+          <li><a href="#research">Research</a></li>
+          <li><a href="https://drive.google.com/file/d/1iWNqDdsqv56_IBkO6QBvxlaDWgGq9M-P/view?usp=sharing">CV</a></li>
+          <li><a href="https://www.linkedin.com/in/zhuhan-jin">LinkedIn</a></li>
+          <li>Email: <span class="sel">jinzhuhan@gmail.com</span></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <main id="view-research" hidden>
+    <div class="r-head">
+      <h1>Research</h1>
+      
+    </div>
+    <div class="col">
+      <h2>Published</h2>
+      <div class="papers">
+        <details>
+          <summary>
+            <span class="t">A novel approach to study the role of social networks in planning joint leisure activities</span>
+            <span class="w">with Prateek Bansal and Kay Axhausen · <b>Transportation Research Part A</b>, 2025</span>
+            <span class="tog" aria-hidden="true"></span>
+          </summary>
+          <div class="more">
+            <p class="abs-l">Abstract</p>
+            <p>Incorporating social activities in activity-based models is inherently complex due to their diverse nature and the intricacies involved in social coordination. Traditional stated preference surveys also face challenges in capturing the nuanced negotiation processes among group members while planning the location and timing of these activities. To address these challenges, we design a novel street-intercept survey with a series of stated choice experiments to examine how the individual’s preferences for social activity location are affected by knowing the friend’s preferences and mobility inconveniences. We show the application of the approach to investigate the social dining preferences of a pair of friends in Singapore. Our findings indicate that social network attributes (such as the duration of social relationships) and sociodemographic characteristics (like the gender of friends) substantially influence the weight given to a friend's preferences and convenience when selecting a location for joint dining activities. The method is adaptable to modeling other social activities and various activity dimensions (e.g., start time and duration).</p>
+            <p>Volume 192, 104371. <a href="https://doi.org/10.1016/j.tra.2024.104371">doi.org/10.1016/j.tra.2024.104371</a> · <a href="https://doi.org/10.3929/ethz-b-000714903">Open-access working paper</a></p>
+          </div>
+        </details>
+      </div>
+
+      <h2>Under review</h2>
+      <div class="papers">
+        <details>
+          <summary>
+            <span class="t">An egocentric network disturbance model for quantifying social network effects in technology adoption</span>
+            <span class="w">with Prateek Bansal · <b>Transportation Science</b>, major revision</span>
+            <span class="tog" aria-hidden="true"></span>
+          </summary>
+          <div class="more">
+            <p class="abs-l">Abstract</p>
+            <p>Quantifying the effect of social networks on individual decisions typically requires complete network data, which are rarely available in practice. Egocentric surveys record only each respondent's own contacts, leaving the ties among those contacts and beyond unobserved. We propose an egocentric network disturbance model, a Bayesian spatial autoregressive formulation estimated with a Metropolis-Hastings-within-Gibbs sampler, that identifies network dependence from such partially observed networks, and we extend it to panel data. Monte Carlo studies show that the estimator recovers the true parameters and that ignoring friends-of-friends effects biases the estimates. We apply the model to electric vehicle adoption using an egocentric survey in which 1,388 respondents named 6,601 contacts and stated their probability of adoption conditional on their friends' adoption. Network dependence is significant and stronger in denser networks. An agent-based simulation built on the estimates shows that social ties initially slow adoption and later drive a second wave, and that targeting well-connected individuals reaches 80% adoption sooner than random allocation.</p>
+          </div>
+        </details>
+      </div>
+
+      <h2>Working papers</h2>
+      <div class="papers">
+        <details>
+          <summary>
+            <span class="t">Generating synthetic household populations with social networks using large language models</span>
+            <span class="w">with Prateek Bansal, Sung Yoo Lim and Eui-Jin Kim</span>
+            <span class="tog" aria-hidden="true"></span>
+          </summary>
+          <div class="more">
+            <p class="abs-l">Abstract</p>
+            <p>Agent-based models of urban mobility increasingly require synthetic populations that capture not only household attributes but also the social ties between households. We present a two-stage framework that generates synthetic households together with their inter-household social networks. In the first stage, a language model (DistilGPT-2) is fine-tuned to generate households as text, with the ordering of variables guided by a Bayesian network. Trained on a 10% sample of Singapore's 2022 Household Travel Survey, it outperforms hierarchical latent class and conditional variational autoencoder benchmarks in reproducing complete attribute combinations (F1 of 0.70 against 0.64 and 0.58). In the second stage, a graph variational autoencoder trained on 1,388 ego networks generates friendship ties between synthetic households, linking household demographics, ego-alter attributes, and friendship closeness. The generated populations are evaluated against observed data using marginal and bivariate SRMSE, precision, recall, F1, and network homophily. The resulting population provides the foundation for a network-aware agent-based digital twin of Singapore.</p>
+          </div>
+        </details>
+        <details>
+          <summary>
+            <span class="t">Simulating daily activity schedules considering inter-household social interactions</span>
+            <span class="w">with Prateek Bansal and Michel Bierlaire</span>
+            <span class="tog" aria-hidden="true"></span>
+          </summary>
+          <div class="more">
+            <p class="abs-l">Abstract</p>
+            <p>Activity-based models usually schedule each individual's day in isolation, although many activities are planned jointly with friends. We extend OASIS, an optimization-based activity scheduling framework, to accommodate joint activity scheduling and the negotiation process between a pair of friends. The problem is formulated as a mixed-integer linear program with a game-theoretic design that specifies the rules of the game, the negotiation protocol, and the equilibrium through which friends agree on a shared activity. Preference parameters for social ties, travel cost, location, and start-time flexibility are estimated with discrete choice models in Biogeme. We address the endogeneity of activity cost, which arises from unobserved activity quality, using an integrated choice and latent variable model, and we test for panel random effects and path dependency. The framework allows daily activity schedules to be simulated while accounting for inter-household social interactions.</p>
+          </div>
+        </details>
+      </div>
+
+      <h2>Conferences</h2>
+      <ul class="plain">
+        <li><span>International Choice Modelling Conference (ICMC)</span><span class="y">2026</span></li>
+        <li><span>Transportation Research Board (TRB) Annual Meeting</span><span class="y">2026</span></li>
+        <li><span>International Conference on Travel Behaviour Research (IATBR)</span><span class="y">2024</span></li>
+      </ul>
+
+      <h2>Education</h2>
+      <ul class="plain">
+        <li><span>PhD in Civil and Environmental Engineering, National University of Singapore<small>President's Graduate Fellowship. Visiting doctoral student at EPFL, 2026.</small></span><span class="y">2023 – present</span></li>
+        <li><span>MPhil in Economics, University of Oxford</span><span class="y">2020 – 2022</span></li>
+        <li><span>BA with International Honours, College of William &amp; Mary and University of St Andrews<small>Economics major, Computer Science minor.</small></span><span class="y">2016 – 2020</span></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>Zhuhan Jin · Singapore · Updated November 2026</footer>
+</div>
+
+<script>
+(function () {
+  var views = { home: document.getElementById('view-home'), research: document.getElementById('view-research') };
+  function show() {
+    var name = location.hash.replace('#', '');
+    if (!views[name]) name = 'home';
+    for (var k in views) views[k].hidden = k !== name;
+    document.querySelectorAll('.nav .tabs a').forEach(function (a) {
+      if (a.dataset.view === name) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', show);
+  show();
+
+})();
+</script>
+</body>
+</html>
